@@ -18,3 +18,8 @@ add_executable(fighting src/1/fighting.cpp)
 add_executable(trouble src/1/trouble.cpp)
 
 add_executable(number src/2/number.cpp)
+add_executable(cows src/2/cows.cpp)
+add_executable(castle src/2/castle.cpp)
+add_executable(shop src/2/shop.cpp)
+add_executable(elephpotamus src/2/elephpotamus.cpp)
+add_executable(spy src/2/spy.cpp)
