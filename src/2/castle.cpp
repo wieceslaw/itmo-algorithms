@@ -11,31 +11,6 @@ bool compare(std::pair<char, int> &a, std::pair<char, int> &b) {
     return a.second > b.second;
 }
 
-struct Cls {
-    Cls(char c, double d, int i);
-private:
-    char c;
-    double d;
-    int i;
-};
-
-struct Clazz {
-    char c;
-    double d;
-    int i;
-};
-
-
-double &get_d(Cls &cls) {
-    double *p = (double*) (((char*) &cls) + offsetof(Clazz, d));
-    return *p;
-}
-
-int &get_i(Cls &cls) {
-    int *p = (int*) (((char*) &cls) + offsetof(Clazz, i));
-    return *p;
-}
-
 int main() {
     std::string line;
     int symbols[26] = {0};

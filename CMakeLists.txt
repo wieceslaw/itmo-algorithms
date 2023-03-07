@@ -4,12 +4,6 @@ project(algorithms)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-#file(чё-то там чтоб все файлы в папке ARRAY)
-#
-#for (FILE IN ARRAY)
-#add_executable(${FILE} ${FILE})
-#endfor()
-
 add_executable(agro src/1/agro.cpp)
 add_executable(zoo src/1/zoo.cpp)
 add_executable(config src/1/config.cpp)
@@ -23,3 +17,15 @@ add_executable(castle src/2/castle.cpp)
 add_executable(shop src/2/shop.cpp)
 add_executable(elephpotamus src/2/elephpotamus.cpp)
 add_executable(spy src/2/spy.cpp)
+
+add_executable(cars src/3/cars.cpp)
+add_executable(goblins src/3/goblins.cpp)
+add_executable(manager src/3/manager.cpp)
+add_executable(minimum src/3/minimum.cpp)
+add_executable(monobilliards src/3/monobilliards.cpp)
+add_executable(war src/3/war.cpp)
+
+add_executable(pigs src/4/pigs.cpp)
+add_executable(civilization src/4/civilization.cpp)
+add_executable(cheating src/4/cheating.cpp)
+add_executable(flights src/4/flights.cpp)

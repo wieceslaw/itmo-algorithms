@@ -10,9 +10,6 @@
 #include <map>
 #include <queue>
 
-// https://www.cs.princeton.edu/courses/archive/spr03/cs226/assignments/burrows.html
-// https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform
-
 int main() {
     std::size_t k;
     std::string last_column;

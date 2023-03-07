@@ -34,21 +34,21 @@ int bin_search(std::vector<int> &a, int c, int min_step, int max_step) {
 
 int main() {
     int n, k;
-    int min_r, max_r;
+    int min_step, max_step;
     std::cin >> n >> k;
     std::vector<int> a(n);
     for (std::size_t i = 0; i < n; i++) {
         std::cin >> a[i];
         if (i == 1) {
-            min_r = a[i] - a[i - 1];
+            min_step = a[i] - a[i - 1];
         } else if (i > 1) {
             int r = a[i] - a[i - 1];
-            if (r < min_r) {
-                min_r = r;
+            if (r < min_step) {
+                min_step = r;
             }
         }
     }
-    max_r = (a.back() - a.front()) / (k - 1);
-    std::cout << bin_search(a, k, min_r, max_r + 1) << std::endl;
+    max_step = (a.back() - a.front()) / (k - 1);
+    std::cout << bin_search(a, k, min_step, max_step + 1) << std::endl;
     return 0;
 }

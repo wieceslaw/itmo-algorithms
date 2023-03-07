@@ -41,21 +41,21 @@ int main() {
     std::sort(points.begin(), points.end(), compare);
     int last = 0;
     for (int i = 1; i < n - 1; i++) {
-        // TODO: remake
-        point p1 = points[i], p2 = points[i+1];
-        int x = p1.x * p2.y - p1.y * p2.x;
-        int d = p1.x * p2.x + p1.y * p2.y;
-        if(x < 0 || x == 0 && d < 0) {
+        point v1 = points[i], v2 = points[i + 1];
+        // {x1, y1} = {k * x2, k * y2}
+        // x1 / x2 = y1 / y2
+        // x1 * y2 - x2 * y2 = 0
+        bool parallel = (v1.x * v2.y - v1.y * v2.x) == 0;
+        bool opposite = (v1.x * v2.x + v1.y * v2.y) < 0;
+        if ((v2.a - v1.a - M_PI > 0) || (parallel && opposite)) {
             last = i + 1;
             break;
         }
     }
     std::cout << n << '\n';
     std::cout << 1 << '\n';
-
     for (int i = 0; i < n - 1; i++) {
         std::cout << points[(i + last) % (n - 1)].n << '\n';
     }
-
     return 0;
 }
