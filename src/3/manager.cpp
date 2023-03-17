@@ -59,9 +59,7 @@ void free_block(freed_t& freed, alloc_t& alloc, std::list<block_t>& blocks, int 
     auto alloc_it = alloc.find(n);
     if (alloc_it == alloc.end()) { return; }
     auto block_it = alloc_it->second;
-    // alloc.erase(alloc_it);
     block_it->is_free = true;
-    block_t block = *block_it;
 
     // check left, check right
     bool merge_left = false;
