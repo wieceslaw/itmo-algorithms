@@ -45,5 +45,5 @@ Timus
 4. [Авиаперелеты](src/4/flights.cpp)
 
 Timus
-1. [](src/4/)
-2. [](src/4/)
+1. [Российские газопроводы](src/4/flights.cpp)
+2. [Обмен валют](src/4/currency.cpp)
