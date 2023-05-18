@@ -4,41 +4,50 @@
 
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 
-typedef std::vector<std::unordered_set<int>> graph_t;
+using namespace std;
 
-void dfs(const graph_t& graph, std::vector<bool>& visited, int vert) {
-    visited[vert] = true;
-    for (int next_vert: graph[vert]) {
-        if (!visited[next_vert]) {
-            dfs(graph, visited, next_vert);
+int n;
+vector<int> graph[100];
+bool visited[100];
+
+void dfs(int v) {
+    visited[v] = true;
+    for (int u: graph[v]) {
+        if (!visited[u]) {
+            dfs(u);
+        }
+    }
+}
+
+void solve() {
+    int components = 0;
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            dfs(i);
+            components++;
+        }
+    }
+    cout << components << endl;
+}
+
+void read() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin >> n;
+    for (int key = 0; key < n; key++) {
+        int tmp;
+        cin >> tmp;
+        tmp--;
+        if (key != tmp) {
+            graph[key].push_back(tmp);
+            graph[tmp].push_back(key);
         }
     }
 }
 
 int main() {
-    int n, comp = 0;
-    std::cin >> n;
-    graph_t graph(n);
-    std::vector<bool> visited(n);
-    // read graph
-    for (int key = 0; key < n; key++) {
-        int value;
-        std::cin >> value;
-        value--;
-        if (key != value) {
-            graph[key].insert(value);
-            graph[value].insert(key);
-        }
-    }
-    // find components
-    for (int i = 0; i < n; i++) {
-        if (!visited[i]) {
-            dfs(graph, visited, i);
-            comp++;
-        }
-    }
-    std::cout << comp << std::endl;
+    read();
+    solve();
     return 0;
 }

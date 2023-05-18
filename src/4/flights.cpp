@@ -14,36 +14,38 @@ using namespace std;
 
 int n, counter, only_scc;
 int max_tank, min_tank;
+int st_count, st_first_v;
 int ind[MAX_SIZE];
 int low[MAX_SIZE];
 int graph[MAX_SIZE][MAX_SIZE];
-queue<int> st;
 
 void dfs(int max_size, int v) {
+    if (!only_scc) {
+        return;
+    }
     ind[v] = low[v] = ++counter;
-    st.push(v);
+    st_count++;
     for (int u = 0; u < n; u++) {
         if (v != u && graph[v][u] <= max_size) {
             if (ind[u] == 0) {
                 dfs(max_size, u);
             }
             if (ind[u] != 0) {
-                ind[v] = min(ind[v], ind[u]);
+                low[v] = min(low[v], low[u]);
             }
         }
     }
-    if (ind[v] == low[v]) {
-        if (st.size() != n || st.front() != v) {
-            only_scc = false;
-        }
+    if (ind[v] == low[v] && (st_count != n || st_first_v != v)) {
+        only_scc = false;
     }
 }
 
 bool is_connected(int max_size) {
-    std::fill(std::begin(ind), std::end(ind), 0);
-    std::fill(std::begin(low), std::end(low), 0);
-    st = queue<int>();
+    fill(begin(ind), end(ind), 0);
+    fill(begin(low), end(low), 0);
     counter = 0;
+    st_count = 0;
+    st_first_v = 0;
     only_scc = true;
     dfs(max_size, 0);
     return only_scc;
@@ -69,7 +71,9 @@ void solve() {
 }
 
 void read() {
-    std::cin >> n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin >> n;
     max_tank = 0;
     min_tank = INT32_MAX;
     for (int i = 0; i < n; i++) {

@@ -9,16 +9,19 @@
 using namespace std;
 
 int n, m, s, f;
-int g[500][500] = {0};
-int longest[500] = {0};
-bool used[500] = {0};
+vector<vector<int>> gg;
+vector<vector<int>> i_gg;
+int g[500][500];
+int longest[500];
+bool used[500];
 vector<int> t;
 
 void dfs(int v) {
     used[v] = true;
     if (v != f) {
-        for (int u = 0; u < n; u++) {
-            if (g[v][u] && !used[u]) {
+        for (int u : gg[v]) {
+            i_gg[u].push_back(v);
+            if (!used[u]) {
                 dfs(u);
             }
         }
@@ -38,10 +41,8 @@ void solve() {
         return;
     }
     for (int v : t) {
-        for (int u : t) {
-            if (g[u][v]) {
-                longest[v] = max(longest[v], longest[u] + g[u][v]);
-            }
+        for (int u : i_gg[v]) {
+            longest[v] = max(longest[v], longest[u] + g[u][v]);
         }
     }
     cout << longest[f] << endl;
@@ -51,10 +52,13 @@ void read() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cin >> n >> m;
-    int a, b, c;
+    gg = vector<vector<int>>(n);
+    i_gg = vector<vector<int>>(n);
     for (int i = 0; i < m; i++) {
+        int a, b, c;
         cin >> a >> b >> c;
         a--, b--;
+        gg[a].push_back(b);
         g[a][b] = c;
     }
     cin >> s >> f;
